@@ -34,6 +34,7 @@ body{
     justify-content: space-between;
     background-color: rgb(206, 205, 205);
     margin-top: 1rem;
+    border-radius: .5rem;
 }
 
 #inputs{
