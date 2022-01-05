@@ -26,6 +26,7 @@ export default function App() {
       setinput(event.target.value);
       add2();
     } else {
+      console.log(event.target.value);
       setinput(event.target.value);
     }
   };
@@ -40,6 +41,7 @@ export default function App() {
             id="outlined-basic"
             label="Enter New Task"
             variant="outlined"
+            color="success"
             onKeyUp={(event) => add(event)}
           />
           <Button
@@ -173,7 +175,7 @@ function Task({ str, tasks, check, settask, index }) {
           <span>{str}</span>
         </div>
       )}
-      <Button onClick={() => deletes(index)}>Delete</Button>
+      <Button onClick={() => deletes(index)}>Close</Button>
     </div>
   );
 }
