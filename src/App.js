@@ -42,7 +42,12 @@ export default function App() {
             variant="outlined"
             onKeyUp={(event) => add(event)}
           />
-          <Button variant="contained" onClick={() => add2()} id="addbtn"  color="success">
+          <Button
+            variant="contained"
+            onClick={() => add2()}
+            id="addbtn"
+            color="success"
+          >
             Add
           </Button>
         </div>
