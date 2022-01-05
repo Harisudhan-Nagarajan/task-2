@@ -1,12 +1,17 @@
+body{
+    background-color: black;
+}
 #main-frame{
     display: flex;
     flex-flow: column wrap;
     align-content: center;
     align-items: flex-start;
     margin-top: 5rem;
-    background-color: aqua;
+    background-color:rgba(182, 180, 180, 0.719);
     padding: 1rem;
     width: 50rem;
+    border-radius: 1rem;
+    box-shadow: 1px 3px 5px rgb(65, 62, 62);
 }
 
 #forbackground{
@@ -21,4 +26,18 @@
     align-content: center;
     column-gap: 1rem;
 
+}
+#elements{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    background-color: rgb(206, 205, 205);
+    margin-top: 1rem;
+}
+
+#inputs{
+    display: flex;
+    flex-flow: row wrap;
+    
 }

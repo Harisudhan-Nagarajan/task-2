@@ -1,10 +1,10 @@
-
 import TextField from "@mui/material/TextField";
 import "./App.css";
 import Link from "@mui/material/Link";
 import { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import uuid from "react-uuid";
+import { Button } from "@mui/material";
 
 export default function App() {
   let task = [
@@ -13,38 +13,45 @@ export default function App() {
     { check: false, todo: "To Do todo Task" },
   ];
   const [tasks, settask] = useState(task);
+  const [input, setinput] = useState("");
 
-  const add = (event) => {
-    if (event.code === "Enter") {
-      settask([...tasks, { check: false, todo: event.target.value }]);
-      event.target.value = "";
+  const add2 = () => {
+    if (input !== "") {
+      settask([...tasks, { check: false, todo: input }]);
     }
   };
 
-  // const adding=()=>{
-  //   settask([...tasks, { check: false, todo: event.target.value }]);
-  //   event.target.value = "";
-  // }
+  const add = (event) => {
+    if (event.code === "Enter") {
+      setinput(event.target.value);
+      add2();
+    } else {
+      setinput(event.target.value);
+    }
+  };
 
   const [show, setShow] = useState("All");
 
   return (
     <div id="forbackground">
       <div id="main-frame">
-        <div>
+        <div id="inputs">
           <TextField
             id="outlined-basic"
-            label="Text"
+            label="Enter New Task"
             variant="outlined"
-            onKeyPress={(event) => add(event)}
+            onKeyUp={(event) => add(event)}
           />
-          <button>Add</button>
+          <Button variant="contained" onClick={() => add2()} id="addbtn"  color="success">
+            Add
+          </Button>
         </div>
 
         <div id="links">
           <div>
             <Link
               component="button"
+              color={"black"}
               variant="body2"
               underline="none"
               onClick={() => {
@@ -58,6 +65,7 @@ export default function App() {
           <div>
             <Link
               component="button"
+              color={"black"}
               variant="body2"
               underline="none"
               onClick={() => {
@@ -71,6 +79,7 @@ export default function App() {
           <div>
             <Link
               component="button"
+              color={"black"}
               variant="body2"
               underline="none"
               onClick={() => {
@@ -113,15 +122,14 @@ export default function App() {
           {show === "Completed"
             ? tasks
                 .filter(({ check }) => check === true)
-                .map(({ check, todo },index) => (
+                .map(({ check, todo }, index) => (
                   <Task
                     str={todo}
                     tasks={tasks}
                     check={check}
                     settask={settask}
-                   index={index}
-                   key={uuid()}
-                   
+                    index={index}
+                    key={uuid()}
                   />
                 ))
             : ""}
@@ -131,7 +139,7 @@ export default function App() {
   );
 }
 
-function Task({ str, tasks, check, settask,index}) {
+function Task({ str, tasks, check, settask, index }) {
   const change = () => {
     for (var t of tasks) {
       if (t.todo === str) {
@@ -139,15 +147,14 @@ function Task({ str, tasks, check, settask,index}) {
         settask([...tasks]);
       }
     }
-
   };
 
-  const deletes=(index)=>{
-    const remaing = tasks.filter((task,inde)=>inde!==index);
+  const deletes = (index) => {
+    const remaing = tasks.filter((task, inde) => inde !== index);
     settask(remaing);
-  }
+  };
   return (
-    <div>
+    <div id="elements">
       {check === true ? (
         <div>
           <Checkbox label={str} onClick={() => change()} defaultChecked />
@@ -161,7 +168,7 @@ function Task({ str, tasks, check, settask,index}) {
           <span>{str}</span>
         </div>
       )}
-      <button onClick={()=>deletes(index)}>Delete</button>
+      <Button onClick={() => deletes(index)}>Delete</Button>
     </div>
   );
 }
